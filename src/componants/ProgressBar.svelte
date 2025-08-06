@@ -1,14 +1,25 @@
 <script>
+    import { linear } from "svelte/easing";
+
 
 export let valueProgressBar = 0;
+
+function progressBarColor(value){
+    if(value < 33){
+        return "linear-gradient(to right, #00ff00, #7fff00)";
+    }else if(value < 66){
+        return "linear-gradient(to right, #90ff27, #ffcc00)";
+    }else{
+        return "linear-gradient(to right,#d7ff27, #ff9408, #ff4500)";
+    }
+}
 
 
 </script>
 
 <div class="progressBarContainer" >
     
-    <div class="progressBar" style="width: {valueProgressBar}%"></div>
-    <!-- <h4>le compenant marche</h4> -->
+    <div class="progressBar" style="width: {valueProgressBar}%; background:{progressBarColor(valueProgressBar)}"></div>
 
 </div>
 
@@ -16,15 +27,16 @@ export let valueProgressBar = 0;
 
 .progressBarContainer{
     width: 200px;
-    height: 10px;
+    height: 8px;
     background: #5a5a5a;
-    border-radius: 10px;
+    border-radius: 0 10px 10px 0;
+    overflow: hidden;
 }
 
 .progressBar  {
     height: 100%;
-    background: linear-gradient(to right, #ff4747, #ff9d47); 
-    transition: width 0.3s ease;  
+    background: linear-gradient(to right,#d7ff27 ,#ff9408 ); 
+    transition: width 0.8s ease;  
     }
 
 </style>

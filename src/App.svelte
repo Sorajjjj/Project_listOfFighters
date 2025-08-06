@@ -1,6 +1,7 @@
 <script>
     import Icon from "@iconify/svelte";
     import ProgressBar from "./componants/ProgressBar.svelte";
+    
 
     const valueRating = 4.5;
     let valueProgressBar = 0;
@@ -26,14 +27,16 @@
                 <p>Rating : {valueRating} </p>
             </div>
 
-                <div class="favoutiteF__iconCalendar">
-                    <Icon icon="mi:calendar" width="60" height="60" />
+                <div class="favoutiteF__containerCalendar">
+                    <div class="favoutiteF__iconCalendar">
+                        <Icon icon="mi:calendar" width="60" height="60" />
+                    </div>
+                    <!-- todo récupérer la valeur des date pour influencer la bar de chargement pour le prochain combat -->
+                    <ProgressBar bind:valueProgressBar />
                 </div>
-
-                <ProgressBar/>
-
+                
                 <div class="favoutiteF__iconTrash">
-                    <Icon icon="mi:delete" width="23" height="23"  onclick={(event) => {
+                    <Icon icon="meteor-icons:xmark" width="30" height="30"  onclick={(event) => {
                     console.log("je clique sur la barre")
                     valueProgressBar += 10;
                     console.log(valueProgressBar);
@@ -81,6 +84,8 @@
 
 
 
+
+
     :global(body){
 
         background-color: var(--primaryColor);
@@ -121,27 +126,42 @@
 
     .favouriteF__listFighters{
         display: flex;
+        background-color: var(--secondaryColoryVariant);
         align-items: center;
+        border-bottom: solid 1px var(--borderClary);
         border-top: solid 1px var(--borderClary);
     }
 
     /* icon */
     .favoutiteF__iconCalendar{
+        
         position: relative;
-        left: 120px;
+        left: -7px;
         
         
     }
+
+    .favoutiteF__containerCalendar{
+        position: relative;
+        left: 150px;
+    }
+
+    
+
+
     .favoutiteF__iconTrash{
         position: relative;
-        left: -325px;
+        left: -390px;
         top: 35px;
+        rotate: 10px;
+        
+        
         
     }
 
     .favouriteF__imageBox .favouriteF__FaceImg{
-        width: 120px;
-        height: 100px;
+        width: 110px;
+        height: 90px;
         object-fit: cover;
         object-position: -30px 0;
         border: solid 3px var(--borderClary);
