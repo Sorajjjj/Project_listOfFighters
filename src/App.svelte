@@ -1,15 +1,19 @@
 <script>
     import Icon from "@iconify/svelte";
+    import ProgressBar from "./componants/ProgressBar.svelte";
+
+    const valueRating = 4.5;
+    let valueProgressBar = 0;
 
 </script>
 
 <header>
-    <h1 class="title">List of Fighters</h1>
+    <h1 class="title">List of FIGHTERS</h1>
 </header>
 <main>
 
     <section class="favouriteF">
-        <h2 class="favouriteF__titleFavouriteFighters">Favourite Fighters</h2>
+        <h2 class="favouriteF__titleFavourite">Favourite Fighters</h2>
 
         <article class="favouriteF__listFighters">
 
@@ -19,11 +23,23 @@
 
             <div class="favouriteF__name-rating">
                 <h3>Jon Jones</h3>
-                <p>rating : </p>
+                <p>Rating : {valueRating} </p>
             </div>
 
-                <Icon icon="mi:calendar" width="24" height="24" />
-                <Icon icon="mi:delete" width="24" height="24" />
+                <div class="favoutiteF__iconCalendar">
+                    <Icon icon="mi:calendar" width="60" height="60" />
+                </div>
+
+                <ProgressBar/>
+
+                <div class="favoutiteF__iconTrash">
+                    <Icon icon="mi:delete" width="23" height="23"  onclick={(event) => {
+                    console.log("je clique sur la barre")
+                    valueProgressBar += 10;
+                    console.log(valueProgressBar);
+
+                }} />
+                </div>
             
         </article>
 
@@ -32,11 +48,15 @@
 
     <section class="addFavouriteF">
 
-        <h2>Add Favourite Fighter</h2>
+        <h2 class="favouriteF__titleFavourite">Add Favourite Fighter</h2>
         <form>
-            <div><input type="text" placeholder="Name"></div>
-            <div><input type="text" placeholder="Rating"></div>
-            <button type="submit"> Add Fighter</button>
+            <span class="addFavouriteF__inputText">
+                <input class="addFavouriteF__inputName" type="text" placeholder="Name">
+                <input class="addFavouriteF__inputRating" type="text" placeholder="Rating">
+            </span>
+            <div class="addFavouriteF__formSubmit">
+                <button type="submit"> Add Fighter</button>
+            </div>
         </form>
 
     </section>
@@ -68,6 +88,7 @@
         display: flex;
         justify-content: center;
         font-family: 'Bebas Neue', sans-serif;
+
     }
 
     main{
@@ -87,22 +108,36 @@
 
     .favouriteF{
         border: solid 1px var(--borderClary);
+        border-radius: 0.5rem;
+        height: 60vh;
+        
     }
 
 
-    .favouriteF__titleFavouriteFighters{
+    .favouriteF__titleFavourite{
         text-transform: uppercase;
-        padding: 0.2rem 1rem;
+        padding: 0.3rem 1rem;
     }
 
-    
     .favouriteF__listFighters{
         display: flex;
         align-items: center;
+        border-top: solid 1px var(--borderClary);
     }
 
-
-    
+    /* icon */
+    .favoutiteF__iconCalendar{
+        position: relative;
+        left: 120px;
+        
+        
+    }
+    .favoutiteF__iconTrash{
+        position: relative;
+        left: -325px;
+        top: 35px;
+        
+    }
 
     .favouriteF__imageBox .favouriteF__FaceImg{
         width: 120px;
@@ -112,6 +147,65 @@
         border: solid 3px var(--borderClary);
         border-radius: 100%;
         margin: 1rem;
+    }
+
+    .favouriteF__name-rating{
+        font-size: 1.3rem;
+    }
+
+    .favouriteF__name-rating h3{
+        text-transform: uppercase;
+    }
+
+    
+/* section Add Favourite Fighter */
+    .addFavouriteF{
+        
+        margin: 2rem 0 0 0;
+        border: solid 1px var(--borderClary);
+        border-radius: 0.5rem;
+    }
+
+    .addFavouriteF__inputText{
+        display: flex;
+        justify-content: center;   
+    }
+
+    .addFavouriteF__inputText input[type="text"]{
+        width: 100%;
+        height: 2.3rem;
+        background-color: var(--primaryColor);
+        color: var(--textColor);
+        border: solid 1px var(--borderClary);
+    }
+
+    .addFavouriteF__inputName{
+        margin: 0 0.1rem 0 1rem;
+        border-radius: 8px 0 0 8px;
+        
+    }
+
+    .addFavouriteF__inputRating{
+        margin: 0 1rem 0 0.1rem;
+        border-radius: 0 8px 8px 0;
+    }
+
+
+
+
+    .addFavouriteF__formSubmit button[type="submit"]{
+        border: solid 1px var(--borderClary);
+        background-color: var(--secondaryColoryVariant);
+        color: var(--textColor);
+        
+        height: 4rem;
+        border-radius: 8px;
+        width: 95%;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 2rem;
+        margin: 1rem;
+        
     }
 
 </style>
